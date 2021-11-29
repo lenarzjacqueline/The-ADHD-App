@@ -1,0 +1,87 @@
+#: include diagnosis.kv
+
+MDScreen:
+    name: 'registerdiagnosis'
+    MDFloatLayout:
+        MDLabel:
+            text: "Registration"
+            font_size: "30sp"
+            font_name: 'Poppins-Medium.ttf'
+            pos_hint: {"center_x": .6, "center_y": .70}
+        MDLabel: 
+            text: "Diagnosis"
+            text_color: 1, 0.2, 0.4, 1
+            theme_text_color: "Custom"
+            font_size: "18"
+            font_name: 'Poppins-Medium.ttf'
+            pos_hint: {"center_x": .6, "center_y": .62}
+    MDFloatLayout:
+        size_hint: .79, .08
+        pos_hint: {"center_x": .5, "center_y": .42}
+        MDLabel:
+            text: "First Name"
+            font_size: "14sp"
+            font_name: 'Poppins-Medium.ttf'
+            pos_hint: {"center_x": .5, "center_y": .9}
+        TextInput: 
+            size_hint_y: .75
+            font_name: 'Poppins-Regular.ttf'
+            pos_hint: {"center_x": .49, "center_y": .3}
+            background_color: 0,0,0,0
+            cursor_color: 1, 0.2, 0.4, 1
+            cursor_width: "2sp"
+            font_size: "17sp"
+            multiline: False
+        MDFloatLayout:
+            pos_hint: {"center_x": .5, "center_y": 0}
+            size_hint_y: .03
+    MDFloatLayout:
+        size_hint: .79, .08
+        pos_hint: {"center_x": .5, "center_y": .33}
+        MDLabel:
+            text: "Last Name"
+            font_size: "14sp"
+            font_name: 'Poppins-Medium.ttf'
+            pos_hint: {"center_x": .5, "center_y": .9}
+        TextInput: 
+            size_hint_y: .75
+            font_name: 'Poppins-Regular.ttf'
+            pos_hint: {"center_x": .49, "center_y": .3}
+            background_color: 0,0,0,0
+            cursor_color: 1, 0.2, 0.4, 1
+            cursor_width: "2sp"
+            font_size: "17sp"
+            multiline: False
+        MDFloatLayout:
+            pos_hint: {"center_x": .5, "center_y": 0}
+            size_hint_y: .03
+    MDFloatLayout:
+        size_hint: .79, .08
+        pos_hint: {"center_x": .5, "center_y": .24}
+        MDLabel:
+            text: "Email"
+            font_size: "14sp"
+            font_name: 'Poppins-Medium.ttf'
+            pos_hint: {"center_x": .5, "center_y": .9}
+        TextInput: 
+            size_hint_y: .75
+            font_name: 'Poppins-Regular.ttf'
+            pos_hint: {"center_x": .49, "center_y": .3}
+            background_color: 0,0,0,0
+            cursor_color: 1, 0.2, 0.4, 1
+            cursor_width: "2sp"
+            font_size: "17sp"
+            multiline: False
+        MDFloatLayout:
+            pos_hint: {"center_x": .5, "center_y": 0}
+            size_hint_y: .03
+    MDFloatLayout:
+        MDRaisedButton: 
+            text: 'Register'
+            theme_text_color: "Custom"
+            size_hint: .15, .07
+            font_name: 'Poppins-Regular.ttf'
+            font_style: 'Subtitle2'
+            pos_hint: {'center_x':0.8, 'center_y':0.30}
+            on_release: app.root.current = "diagnosis"
+
