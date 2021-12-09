@@ -48,36 +48,41 @@ gc = pygsheets.authorize(creds)
 spreadsheet_id = '13iboRDI7pcjsaWriqcwMvOPd8_d883ZeRlJgnZk4Bn8'
 service = build('sheets', 'v4', credentials=creds)
 
-#get values from spreadsheet
+#get spreadsheet and pertinent values
 gc = gspread.authorize(creds)
 sh = gc.open_by_url('https://docs.google.com/spreadsheets/d/13iboRDI7pcjsaWriqcwMvOPd8_d883ZeRlJgnZk4Bn8/edit#gid=1737311642')
-wks = sh.worksheet('Diagnosis_Input')
+wks = sh.get_worksheet('Diagnosis_Input')
 data = wks.get_all_values()
 headers = data.pop(0)
+ethnicity = wks.cell(21, 1).value
 
-#creating dataframe
+#one hot encoding - manually (delete value - keep the property titles)
+#then add new encoded values to match train and test data
+wks.delete_values(21, 1, number=1, values=None, inherit=False)
+wks.insert_cols(21, number=3, values=None, inherit=False)
+if ethnicity == 1:
+    wks.insert_rows(row = 1, number = 3, values =['1', '0', '0'])
+elif ethnicity == 2:
+    wks.insert_rows(row = 1, number = 3, values =['0', '1', '0'])
+elif ethnicity == 3:
+    wks.insert_rows(row = 1, number = 3, values =['0', '0', '1'])
+else: 
+    wks.insert_rows(row = 1, number = 3, values =['0', '0', '1'])
+
+#create pandas pf
+data = wks.get_all_values()
+headers = data.pop(0)
 df = pd.DataFrame(data, columns=headers)
 ds = df.values
-
-#defining values
 properties = list(df.columns.values)
 X = ds[properties]
 
-#one hot encoding
-Encoder = OneHotEncoder()
-ct = ColumnTransformer([('encoder', OneHotEncoder(), [20])], remainder='passthrough')
-diagnosis_input = np.array(ct.fit_transform(diagnosis_input), dtype=np.integer)
+#generate prediction using numpy array and chosen model
+a= np.array([[X]])
+print(model_chosen.predict(a))
 
-#get last row added
-rows = service.spreadsheets().values().get(spreadsheetId=spreadsheet_id, range=range).execute().get('values', [])
-last_row = rows[-1] if rows else None
-last_row_id = len(rows)
-print(last_row_id, last_row)
 
-#one hot encoding
-Encoder = OneHotEncoder()
-ct = ColumnTransformer([('encoder', OneHotEncoder(), [21])], remainder='passthrough')
-diagnosis_input = np.array(ct.fit_transform(diagnosis_input), dtype=np.integer)
-
-a= np.array([[diagnosis_input]])
-print(model.predict(a))
+#delete sheet for next user, delete blank property tabs added
+if model_chosen.predict(a) != 0:
+    wks.delete_columns(22,23)
+    wks.delete_row(1)
