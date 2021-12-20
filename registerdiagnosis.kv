@@ -1,7 +1,17 @@
+#importing kv files necessary for the screen
 #: include diagnosis.kv
+#: include selection.kv
+#: include main.kv
+
+
+#importing python files necessary for the screen
+import registerbtn from registerdiagnosis
+
 
 MDScreen:
     name: 'registerdiagnosis'
+    age_check = age_check
+    email_check = email_check
     MDFloatLayout:
         MDLabel:
             text: "Registration"
@@ -16,42 +26,89 @@ MDScreen:
             font_name: 'Poppins-Medium.ttf'
             pos_hint: {"center_x": .6, "center_y": .62}
     MDFloatLayout:
-        size_hint: .79, .08
-        pos_hint: {"center_x": .5, "center_y": .42}
-        MDLabel:
-            text: "First Name"
-            font_size: "14sp"
-            font_name: 'Poppins-Medium.ttf'
-            pos_hint: {"center_x": .5, "center_y": .9}
-        TextInput: 
-            size_hint_y: .75
-            font_name: 'Poppins-Regular.ttf'
-            pos_hint: {"center_x": .49, "center_y": .3}
-            background_color: 0,0,0,0
-            cursor_color: 1, 0.2, 0.4, 1
-            cursor_width: "2sp"
-            font_size: "17sp"
-            multiline: False
+        MDGridLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .24}
+            cols: 2
+            MDFloatLayout:
+                MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 0}
+                size_hint_y: .03
+                MDRaisedButton: 
+                    text: 'verify'
+                    id: emailbtn
+                    self.background_color = (0, 0, 0, .3)
+                    theme_text_color: "Custom"
+                    size_hint: .15, .07
+                    font_name: 'Poppins-Regular.ttf'
+                    font_style: 'Subtitle2'
+                    pos_hint: {'center_x':0.35, 'center_y':0.30}
+                    on_press: self.background_color = (1, 0.2, 0.4, 1)
+                MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 0}
+                size_hint_y: .03
+            MDFloatLayout:
+                MDLabel:
+                    text: "Email"
+                    font_size: "14sp"
+                    font_name: 'Poppins-Medium.ttf'
+                    pos_hint: {"center_x": .5, "center_y": .9}
+                TextInput: 
+                    id: email_check
+                    text_color: 1, 0.2, 0.4, 1
+                    size_hint_y: .75
+                    font_name: 'Poppins-Regular.ttf'
+                    pos_hint: {"center_x": .49, "center_y": .3}
+                    background_color: 0,0,0,0
+                    cursor_color: 1, 0.2, 0.4, 1
+                    cursor_width: "2sp"
+                    font_size: "17sp"
+                    multiline: False
         MDFloatLayout:
             pos_hint: {"center_x": .5, "center_y": 0}
             size_hint_y: .03
     MDFloatLayout:
-        size_hint: .79, .08
-        pos_hint: {"center_x": .5, "center_y": .33}
-        MDLabel:
-            text: "Last Name"
-            font_size: "14sp"
-            font_name: 'Poppins-Medium.ttf'
-            pos_hint: {"center_x": .5, "center_y": .9}
-        TextInput: 
-            size_hint_y: .75
-            font_name: 'Poppins-Regular.ttf'
-            pos_hint: {"center_x": .49, "center_y": .3}
-            background_color: 0,0,0,0
-            cursor_color: 1, 0.2, 0.4, 1
-            cursor_width: "2sp"
-            font_size: "17sp"
-            multiline: False
+        MDGridLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .24}
+            cols: 2
+            MDFloatLayout:
+                MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 0}
+                size_hint_y: .03
+                MDRaisedButton: 
+                    text: 'verify'
+                    id: agebtn
+                    self.background_color = (0, 0, 0, .3)
+                    theme_text_color: "Custom"
+                    size_hint: .15, .07
+                    font_name: 'Poppins-Regular.ttf'
+                    font_style: 'Subtitle2'
+                    pos_hint: {'center_x':0.35, 'center_y':0.30}
+                    on_press: self.background_color = (1, 0.2, 0.4, 1)
+                MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 0}
+                size_hint_y: .03
+            MDFloatLayout:
+                MDLabel:
+                    text: "Age"
+                    font_size: "14sp"
+                    font_name: 'Poppins-Medium.ttf'
+                    pos_hint: {"center_x": .5, "center_y": .9}
+                TextInput: 
+                    id: age_check
+                    text_color: 1, 0.2, 0.4, 1
+                    size_hint_y: .75
+                    font_name: 'Poppins-Regular.ttf'
+                    pos_hint: {"center_x": .49, "center_y": .3}
+                    background_color: 0,0,0,0
+                    cursor_color: 1, 0.2, 0.4, 1
+                    cursor_width: "2sp"
+                    font_size: "17sp"
+                    min_value : 0
+                    max_value : 100
+                    input_filter: 'int'
+                    multiline: False
         MDFloatLayout:
             pos_hint: {"center_x": .5, "center_y": 0}
             size_hint_y: .03
@@ -59,29 +116,48 @@ MDScreen:
         size_hint: .79, .08
         pos_hint: {"center_x": .5, "center_y": .24}
         MDLabel:
-            text: "Email"
+            text: "Sex?"
             font_size: "14sp"
             font_name: 'Poppins-Medium.ttf'
             pos_hint: {"center_x": .5, "center_y": .9}
-        TextInput: 
-            size_hint_y: .75
-            font_name: 'Poppins-Regular.ttf'
-            pos_hint: {"center_x": .49, "center_y": .3}
-            background_color: 0,0,0,0
-            cursor_color: 1, 0.2, 0.4, 1
-            cursor_width: "2sp"
-            font_size: "17sp"
-            multiline: False
+        MDGridLayout:
+            MDRaisedButton: 
+                text: 'Female'
+                id: select_female
+                self.background_color = (0, 0, 0, .3)
+                theme_text_color: "Custom"
+                size_hint: .15, .07
+                font_name: 'Poppins-Regular.ttf'
+                font_style: 'Subtitle2'
+                pos_hint: {'center_x':0.35, 'center_y':0.30}
+                on_press: self.background_color = (1, 0.2, 0.4, 1)
+            MDRaisedButton: 
+                text: 'Male'
+                id: select_male
+                self.background_color = (0, 0, 0, .3)
+                theme_text_color: "Custom"
+                size_hint: .15, .07
+                font_name: 'Poppins-Regular.ttf'
+                font_style: 'Subtitle2'
+                pos_hint: {'center_x':0.75, 'center_y':0.30}
+                on_press: self.background_color = (1, 0.2, 0.4, 1)
+                on_release: 'P'
         MDFloatLayout:
             pos_hint: {"center_x": .5, "center_y": 0}
             size_hint_y: .03
     MDFloatLayout:
         MDRaisedButton: 
             text: 'Register'
+            id: registerbtn
             theme_text_color: "Custom"
-            size_hint: .15, .07
+            self.background_color = (0,0,0,0)
+            size_hint: .20, .09
             font_name: 'Poppins-Regular.ttf'
             font_style: 'Subtitle2'
-            pos_hint: {'center_x':0.8, 'center_y':0.30}
+            pos_hint: {'center_x':0.8, 'center_y':0.7}
+            on_press: self.background_color = (1, 0.2, 0.4, 1)
             on_release: app.root.current = "diagnosis"
-
+        MDIconButton:
+            icon: "home"
+            on_release: app.root.current = "selection"
+            pos_hint: {'center_x':0.8, 'center_y':0.30}
