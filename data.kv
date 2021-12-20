@@ -1,2 +1,751 @@
+#importing the dependent kv files
+#: include thankyou.kv
+
+#importing necessary python files / classes
+#: import Data_Input update_gs
+
+
+
 MDScreen:
-    name: "data"
+    name: 'data'
+    #defining our inputs so we can reference them in our python code
+    age_data: age_data
+    adhd_data: adhd_data
+    time_data: time_data	
+    lead_data: lead_data	
+    decisions_data: decisions_data	
+    depression_data: depression_data	
+    bipolar_data: bipolar_data
+    anxiety_data: anxiety_data	
+    alcohol_data: alcohol_data	
+    crying_data: crying_data 
+    headtraumas_data: headtraumas_data	
+    money_data: money_data	
+    impatient_data: impatient_data
+    parentsdiagnosed_data: parentsdiagnosed_data	
+    siblingsdiagnosed_data: siblingsdiagnosed_data	
+    siblingsamount_data: siblingsamount_data 
+    siblingorder_data: siblingorder_data	
+    autism_data: autism_data 
+    trauma_data: trauma_data
+    wfh_data: wfh_data	
+    premature_data: premature_data
+    birthweight_data: birthweight_data	
+    ethnicity_data: ethnicity_data
+    speedingticket_data: speedingticket_data
+    publicoverwhelmed_data: publicoverwhelmed_data
+    ed_data: ed_data
+    imposter_data: imposter_data
+    temper_data: temper_data
+    appointments_data: appointments_data
+    concentratetalking_data: concentratetalking_data
+    epilepsy_data: epilepsy_data
+    size_hint_y: None
+    height: 250
+    StackLayout:
+        height: 250
+        title: "Data !"
+        ScrollView:
+            do_scroll_x: True
+            do_scroll_y: False
+            scroll_type:['bars', 'content']
+            size: self.size
+            bar_color: 1, 0.2, 0.4, 1   # pink
+            bar_inactive_color: 0, 0, 0, 0   # clear
+            effect_cls: "ScrollEffect"
+            scroll_type: ['bars']
+                MDGridLayout:
+                    size_hint_y: None
+                    height: self.minumum_height
+                    width: self.minimum_width
+                    cols: 1
+                    spacing: '20dp'
+                    padding: '20dp'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "Age?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: age_data
+                                text_color: 1, 0.2, 0.4, 1
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 18
+                                max_value : 100
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "Have you been diagnosed with ADHD?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: adhd_data
+                                text_color: 1, 0.2, 0.4, 1
+                                text_hint: "1 = yes, 0 = no"
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 0
+                                max_value : 1  
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "Do you know what time it is right now?"
+                                font_size: "12sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: time_data
+                                text_color: 1, 0.2, 0.4, 1
+                                text_hint: "0 = yes, 1 = not right now, 2 = I never do"
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 0
+                                max_value : 2
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "Were you exposed to lead as a child?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: lead_data
+                                text_color: 1, 0.2, 0.4, 1
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 0
+                                max_value : 1
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "Do you have trouble making decisions?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: decisions_data
+                                text_color: 1, 0.2, 0.4, 1
+                                text_hint: "1 = yes, 0 = no"
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 0
+                                max_value : 1
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "Do you have depression?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: depression_data
+                                text_color: 1, 0.2, 0.4, 1
+                                text_hint: "1 = yes, 0 = no"
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 0
+                                max_value : 1
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "Bipolar?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: bipolar_data
+                                text_color: 1, 0.2, 0.4, 1
+                                text_hint: "1 = yes, 0 = no"
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 0
+                                max_value : 1
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "Anxiety?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: anxiety_data
+                                text_color: 1, 0.2, 0.4, 1
+                                text_hint: "1 = yes, 0 = no"
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 0
+                                max_value : 1
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "How many days in a week do you drink alcohol?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: alcohol_data
+                                text_color: 1, 0.2, 0.4, 1
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 0
+                                max_value : 7
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "How many times in the last month have you cried?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: crying_data
+                                text_color: 1, 0.2, 0.4, 1
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 0
+                                max_value : 50
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "Number of head traumas?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: headtraumas_data
+                                text_color: 1, 0.2, 0.4, 1
+                                text_hint: 'ex: concussion'
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 0
+                                max_value : 15
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "Do you have a good concept of money?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: money_data
+                                text_color: 1, 0.2, 0.4, 1
+                                text_hint: "1 = yes, 0 = no"
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 0
+                                max_value : 1
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "Would you consider yourself impatient?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: impatient_data
+                                text_color: 1, 0.2, 0.4, 1
+                                text_hint: "1 = yes, 0 = no"
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 0
+                                max_value : 1
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "Do either of your parents have ADHD/ADD?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: parentsdiagnosed_data
+                                text_color: 1, 0.2, 0.4, 1
+                                text_hint: "0 = no, 1 = one, 2 = both"
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 0
+                                max_value : 2
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "Siblings diagnosed?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: siblingsdiagnosed_data
+                                text_color: 1, 0.2, 0.4, 1
+                                text_hint: "0 = no, 1 = yes, 2 = multiple"
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 0
+                                max_value : 2
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "Number of siblings?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: siblingsamount_data
+                                text_color: 1, 0.2, 0.4, 1
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 0
+                                max_value : 12
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "Oldest child? Youngest child?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: siblingorder_data
+                                text_color: 1, 0.2, 0.4, 1
+                                text_hint: '1 = youngest, 2 = neither, 3 = oldest'
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 1
+                                max_value : 3
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "Do you have autism?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: autism_data
+                                text_color: 1, 0.2, 0.4, 1
+                                text_hint: "1 = yes, 0 = no"
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 0
+                                max_value : 1
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "Have you had a major traumatic event happen?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: trauma_data
+                                text_color: 1, 0.2, 0.4, 1
+                                text_hint: "0 = no, 1 = yes, childhood, 2 = yes, recently"
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 0
+                                max_value : 2
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "Do you work from home?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: wfh_data
+                                text_color: 1, 0.2, 0.4, 1
+                                text_hint: "1 = yes, 0 = no"
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 0
+                                max_value : 1
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "Were you born prematurely?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: premature_data
+                                text_color: 1, 0.2, 0.4, 1
+                                text_hint: "1 = yes, 0 = no"
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 0
+                                max_value : 1
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "What was your birth weight?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: birthweight_data
+                                text_color: 1, 0.2, 0.4, 1
+                                size_hint_y: .75
+                                text_hint: "numbers & decimals only"
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 0
+                                max_value : 15
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "What is your ethnicity?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: ethnicity_data
+                                text_hint: "1=Asian, 2=Hispanic, 3=White, 4=Black"
+                                text_color: 1, 0.2, 0.4, 1
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 1
+                                max_value : 4
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "Have you gotten a speeding ticket?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: speedingticket_data
+                                text_color: 1, 0.2, 0.4, 1
+                                text_hint: "0 = no, 1 = yes, 2 = multiple"
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 0
+                                max_value : 2
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "Are you easily overwhelmed in public?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: publicoverwhelmed_data
+                                text_color: 1, 0.2, 0.4, 1
+                                text_hint: "1 = yes, 0 = no"
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 0
+                                max_value : 1
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "Do you have / have you had an eating disorder?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: ed_data
+                                text_color: 1, 0.2, 0.4, 1
+                                text_hint: "1 = yes, 0 = no"
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 0
+                                max_value : 1
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "Do you feel imposter syndrome?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: imposter_data
+                                text_color: 1, 0.2, 0.4, 1
+                                text_hint: "1 = yes, 0 = no"
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 0
+                                max_value : 1
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "Do you have temper problems?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: temper_data
+                                text_color: 1, 0.2, 0.4, 1
+                                text_hint: "1 = yes, 0 = no"
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 0
+                                max_value : 1
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "Do you have problems remembering appointments?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: appointments_data
+                                text_color: 1, 0.2, 0.4, 1
+                                text_hint: "1 = yes, 0 = no"
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 0
+                                max_value : 1
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "Do you struggle to concentrate when others talk?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: concentratetalking_data
+                                text_color: 1, 0.2, 0.4, 1
+                                text_hint: "1 = yes, 0 = no"
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 0
+                                max_value : 1
+                                input_filter: 'int'
+                        MDBoxLayout:
+                            cols: 2
+                            MDLabel:
+                                text: "Do you have epilepsy?"
+                                font_size: "14sp"
+                                font_name: 'Poppins-Medium.ttf'
+                                pos_hint: {"center_x": .5, "center_y": .9}
+                            NumericInput: 
+                                id: epilepsy_data
+                                text_color: 1, 0.2, 0.4, 1
+                                text_hint: "1 = yes, 0 = no"
+                                size_hint_y: .75
+                                font_name: 'Poppins-Regular.ttf'
+                                pos_hint: {"center_x": .49, "center_y": .3}
+                                background_color: 0,0,0,0
+                                cursor_color: 1, 0.2, 0.4, 1
+                                cursor_width: "2sp"
+                                font_size: "17sp"
+                                multiline: False
+                                min_value : 0
+                                max_value : 1  
+                                input_filter: 'int'
+                        MDRaisedButton: 
+                            text: 'Submit'
+                            id: submit_data
+                            theme_text_color: "Custom"
+                            self.background_color = (0, 0, 0, .3)
+                            size_hint: .15, .07
+                            font_name: 'Poppins-Regular.ttf'
+                            font_style: 'Subtitle2'
+                            pos_hint: {'center_x':0.8, 'center_y':0.30}
+                            on_press: self.background_color = (1, 0.2, 0.4, 1)
+                            on_release: app.root.current = "thankyou"
