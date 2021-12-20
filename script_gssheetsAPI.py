@@ -10,7 +10,7 @@ SCOPES = ['https://googleapis.com/auth/spreadsheets']
 creds = service_account.Credentials.from_service_account_file(
     'service_account.json', scopes=SCOPES)
 
-SAMPLE_SPREADSHEET_ID = '13iboRDI7pcjsaWriqcwMvOPd8_d883ZeRlJgnZk4Bn8'
+SAMPLE_SPREADSHEET_ID = '##not included for data privacy##'
 service = build('sheets', 'v4', credentials=creds)
 
 
