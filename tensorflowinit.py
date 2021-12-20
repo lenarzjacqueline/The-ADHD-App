@@ -33,28 +33,31 @@ from sklearn.model_selection import cross_val_score, train_test_split, KFold, St
 from sklearn.preprocessing import StandardScaler, OneHotEncoder, LabelEncoder
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
+from sklearn.datasets.samples_generator import make_blobs
 from sklearn.metrics import accuracy_score
+from sklearn import svm
 import numpy as np
 from numpy import std, mean
 
 #authorizaiton to read
-scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive', 'https://www.googleapis.com/auth/drive.file']
-creds = ServiceAccountCredentials.from_json_keyfilename('service_account.json', scope)
-gc = pygsheets.authorize(creds)
+scope = ["https://www.googleapis.com/auth/drive"]
+creds = ServiceAccountCredentials.from_json_keyfile_name('/Users/jacquelenarz/Downloads/client_secret.json', scope)
+client = gspread.authorize(creds)
 
-
-gc = gspread.authorize(creds)
-sh = gc.open_by_url('https://docs.google.com/spreadsheets/d/13iboRDI7pcjsaWriqcwMvOPd8_d883ZeRlJgnZk4Bn8/edit#gid=1737311642')
-wks = sh.worksheet('Data_Input')
-data = wks.get_all_values()
+#open gsheets
+sh = client.open('ADHD App API')
+wk_1 = client.open("ADHD App API").get_worksheet(1)
+data = wk_1.get_all_values()
 headers = data.pop(0)
 
+#DATA DF
 df = pd.DataFrame(data, columns=headers)
 ds = df.values
 
 # split into input (X) and output (Y) variables
 properties = list(df.columns.values)
 properties.remove('adhd_data')
+
 X = ds[properties]
 Y = ds['adhd_data']
 
@@ -65,15 +68,20 @@ ds = ds.sample(frac=1).reset_index(drop=True)
 # convert to numpy arrays
 X = np.array(X)
 
-#split to train and test data
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.33, random_state=1)
+#add df to gsheets combined once in np array, pasting in adhd classification, noting it is "data" data in wks_4
+wk_3 = sh.worksheet('Data_Raw_Combined')
+wk_3.insert_row(values = [X, 'adhd_data', '0'])
 
 #one hot encoding
 Encoder = OneHotEncoder()
-ct = ColumnTransformer([('encoder', OneHotEncoder(), [21])], remainder='passthrough')
+ct = ColumnTransformer([('encoder', OneHotEncoder(), [22])], remainder='passthrough')
 X = np.array(ct.fit_transform(X), dtype=np.integer)
 
-# define base model
+#split to train and test data
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.33, random_state=1)
+
+
+# define base model - BCE 
 def model_baseline():
   modelstandard = Sequential([
     keras.layers.Flatten(input_shape=(4,)),
@@ -99,14 +107,13 @@ results_standardized_std = results.std()*100
 
 #evaluate a smaller network
 def model_smaller():
-    	# create model
   modelsmaller = Sequential()
-  modelsmaller.add(Dense(30, input_dim=60, activation='relu'))
-  modelsmaller.add(Dense(1, activation='sigmoid'))
+  modelsmaller.add(Dense(30, input_dim=60, activation=tf.nn.relu))
+  modelsmaller.add(Dense(1, activation=tf.nn.sigmoid))
   modelsmaller.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
   return modelsmaller
   
-# evaluate smaller model
+# evaluate smaller model - BCE
 estimators_smaller = []
 estimators_smaller.append(('standardize', StandardScaler()))
 estimators_smaller.append(('mlp', KerasClassifier(build_fn=model_smaller, epochs=100, batch_size=5, verbose=0)))
@@ -117,12 +124,36 @@ results_smaller_mean = results.mean()*100
 results_smaller_std = results.std()*100
 
 
-if results_standardized_mean > results_smaller_mean:
-  model_chosen = model_baseline
-  
+#SVM model
+def SVM_Model():
+  clf = svm.SVC(gamma=0.001, C=100.)
+  clf.fit(X_train, Y_train)
+  #configuration options
+  blobs_random_seed = 42
+  centers = [(0,0), (5,5)]
+  cluster_std = 1
+  frac_test_split = 0.33
+  num_features_for_samples = 2
+  num_samples_total = 1000
+  inputs, targets = make_blobs(n_samples = num_samples_total, centers = centers, n_features = num_features_for_samples, cluster_std = cluster_std)
+  predictions = clf.predict(X_test)
 
+
+#choose our model
+if results_standardized_mean > results_smaller_mean:
+  model_chosen = model_smaller
+  chosen_mse = results_smaller_mean
+  chosen_std = results_smaller_std
+else:
+  model_chosen = model_baseline
+  chosen_mse = results_standardized_mean
+  chosen_std = results_standardized_std
+
+
+
+#creating epochs with our chosen model
 model_chosen.fit(X_train, Y_train, epochs=50, batch_size=1)
 
 
+#loss functiton - bce
 test_loss, test_acc = model_chosen.evaluate(X_test, Y_test)  
-test_accuracy = ('Test accuracy:', test_acc)
