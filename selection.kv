@@ -1,3 +1,13 @@
+#importing kv files necessary for screen
+#: include registerdata.kv
+#: include registerdiagnosis.kv
+#: include privacypolicy.kv
+
+    
+#importing python files necessary for the screen
+#: import Selection script_gsheetsAPI
+
+
 MDScreen:    
     name: "selection"
     MDFloatLayout:
@@ -17,13 +27,16 @@ MDScreen:
             theme_text_color: "Custom"
             size_hint: .195, .12
             font_name: 'Poppins-Regular.ttf'
+            on_press: self.background_color = (0, 0, 0, 0)
             on_release: app.root.current = "registerdata"
         MDRaisedButton:
+            id: diagbtn
             pos_hint: {'center_x':0.61, 'center_y':0.5}
             text: 'Diagnosis'
             theme_text_color: "Custom"
             size_hint: .195, .12
             font_name: 'Poppins-Regular.ttf'
+            on_press: self.background_color = (0, 0, 0, 0)
             on_release: app.root.current = "registerdiagnosis"
         MDRaisedButton:
             text: 'what is ADHD?'
@@ -32,4 +45,19 @@ MDScreen:
             font_name: 'Poppins-Regular.ttf'
             font_style: 'Subtitle2'
             pos_hint: {'center_x':0.5, 'center_y':0.35}
-            on_release: app.root.current = "info"
+            on_press: self.background_color = (0, 0, 0, 0)
+            on_release: app.root.current = "moreinfo"
+        MDLabel:
+            text: 'Reminder: by clicking Data or Diagnosis you are agreeing to our privacy policy'
+            halign: 'center'
+            pos_hint: {'center_x':0.5, 'center_y':0.2}
+            font_name: 'Poppins-Regular.ttf'
+        MDRaisedButton:
+            text: 'Privacy Policy'
+            self.background_color = (0, 0, 0, .3)            
+            size_hint: .10, .05
+            font_name: 'Poppins-Regular.ttf'
+            font_style: 'Subtitle2'
+            pos_hint: {'center_x':0.5, 'center_y':0.14}
+            on_press: self.background_color = (1, 0.2, 0.4, 1)
+            on_release: app.root.current = "privacypolicy"
