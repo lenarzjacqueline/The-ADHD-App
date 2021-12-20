@@ -1,2 +1,733 @@
-<Diagnosis>:
+#importing the dependent kv files
+#: include resultssplashscreen.kv
+
+#importing necessary python files / classes
+#: import Diagnosis_Input update_gs
+
+
+
+MDScreen:
     name: 'diagnosis'
+    #defining our inputs so we can reference them in our python code
+        age_diagnosis: age_diagnosis
+    time_diagnosis: time_diagnosis	
+    lead_diagnosis: lead_diagnosis	
+    decisions_diagnosis: decisions_diagnosis	
+    depression_diagnosis: depression_diagnosis	
+    bipolar_diagnosis: bipolar_diagnosis
+    anxiety_diagnosis: anxiety_diagnosis	
+    alcohol_diagnosis: alcohol_diagnosis	
+    crying_diagnosis: crying_diagnosis 
+    headtraumas_diagnosis: headtraumas_diagnosis	
+    money_diagnosis: money_diagnosis	
+    impatient_diagnosis: impatient_diagnosis
+    parentsdiagnosed_diagnosis: parentsdiagnosed_diagnosis	
+    siblingsdiagnosed_diagnosis: siblingsdiagnosed_diagnosis	
+    siblingsamount_diagnosis: siblingsamount_diagnosis 
+    siblingorder_diagnosis: siblingorder_diagnosis	
+    autism_diagnosis: autism_diagnosis 
+    trauma_diagnosis: trauma_diagnosis
+    wfh_diagnosis: wfh_diagnosis	
+    premature_diagnosis: premature_diagnosis
+    birthweight_diagnosis: birthweight_diagnosis	
+    ethnicity_diagnosis: ethnicity_diagnosis
+    speedingticket_diagnosis: speedingticket_diagnosis
+    publicoverwhelmed_diagnosis: publicoverwhelmed_diagnosis
+    ed_diagnosis: ed_diagnosis
+    imposter_diagnosis: imposter_diagnosis
+    temper_diagnosis: temper_diagnosis
+    appointments_diagnosis: appointments_diagnosis
+    concentrationtalking_diagnosis: concentrationtalking_diagnosis
+    epilepsy_diagnosis: epilepsy_diagnosis
+    FloatLayout:
+        canvas.before:
+            Color:
+                rgba: (.95, .95, .95, 1)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        MDLabel:
+            text: "Diagnosis !"
+            font_size: "30sp"
+            pos_hint: {"center_x": .5, "center_y": .93}
+    ScrollView:
+            size: self.size
+            bar_color: 1, 0.2, 0.4, 1   # pink
+            bar_inactive_color: 0, 0, 0, 0   # clear
+            effect_cls: "ScrollEffect"
+            scroll_type: ['bars']
+        MDGridLayout:
+            size_hint_y: None
+            height: self.minumum_height
+            width: self.minimum_width
+            cols: 1
+            spacing: '20dp'
+            padding: '20dp'
+                MDBoxLayout:
+                cols: 2
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "Age?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: age_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 18
+                        max_value : 100
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "Do you know what time it is right now?"
+                        font_size: "12sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: time_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        text_hint: "0 = yes, 1 = not right now, 2 = I never do"
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 0
+                        max_value : 2
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "Were you exposed to lead as a child?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: lead_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 0
+                        max_value : 1
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "Do you have trouble making decisions?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: decisions_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        text_hint: "1 = yes, 0 = no"
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 0
+                        max_value : 1
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "Do you have depression?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: depression_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        text_hint: "1 = yes, 0 = no"
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 0
+                        max_value : 1
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "Bipolar?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: bipolar_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        text_hint: "1 = yes, 0 = no"
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 0
+                        max_value : 1
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "Anxiety?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: anxiety_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        text_hint: "1 = yes, 0 = no"
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 0
+                        max_value : 1
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "How many days in a week do you drink alcohol?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: alcohol_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 0
+                        max_value : 7
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "How many times in the last month have you cried?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: crying_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 0
+                        max_value : 50
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "Number of head traumas?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: headtraumas_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        text_hint: 'ex: concussion'
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 0
+                        max_value : 15
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "Do you have a good concept of money?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: money_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        text_hint: "1 = yes, 0 = no"
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 0
+                        max_value : 1
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "Would you consider yourself impatient?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: impatient_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        text_hint: "1 = yes, 0 = no"
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 0
+                        max_value : 1
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "Do either of your parents have ADHD/ADD?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: parentsdiagnosed_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        text_hint: "0 = no, 1 = one, 2 = both"
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 0
+                        max_value : 2
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "Siblings diagnosed?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: siblingsdiagnosed_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        text_hint: "0 = no, 1 = yes, 2 = multiple"
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 0
+                        max_value : 2
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "Number of siblings?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: siblingsamount_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 0
+                        max_value : 12
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "Oldest child? Youngest child?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: siblingorder_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        text_hint: '1 = youngest, 2 = neither, 3 = oldest'
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 1
+                        max_value : 3
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "Do you have autism?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: autism_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        text_hint: "1 = yes, 0 = no"
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 0
+                        max_value : 1
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "Have you had a major traumatic event happen?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: trauma_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        text_hint: "0 = no, 1 = yes, childhood, 2 = yes, recently"
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 0
+                        max_value : 2
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "Do you work from home?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: wfh_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        text_hint: "1 = yes, 0 = no"
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 0
+                        max_value : 1
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "Were you born prematurely?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: premature_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        text_hint: "1 = yes, 0 = no"
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 0
+                        max_value : 1
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "What was your birth weight?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: birthweight_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        size_hint_y: .75
+                        text_hint: "numbers & decimals only"
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 0
+                        max_value : 15
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "What is your ethnicity?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: ethnicity_diagnosis
+                        text_hint: "1=Asian, 2=Hispanic, 3=White, 4=Black"
+                        text_color: 1, 0.2, 0.4, 1
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 1
+                        max_value : 4
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "Have you gotten a speeding ticket?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: speedingticket_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        text_hint: "0 = no, 1 = yes, 2 = multiple"
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 0
+                        max_value : 2
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "Are you easily overwhelmed in public?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: publicoverwhelmed_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        text_hint: "1 = yes, 0 = no"
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 0
+                        max_value : 1
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "Do you have / have you had an eating disorder?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: ed_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        text_hint: "1 = yes, 0 = no"
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 0
+                        max_value : 1
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "Do you feel imposter syndrome?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: imposter_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        text_hint: "1 = yes, 0 = no"
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 0
+                        max_value : 1
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "Do you have temper problems?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: temper_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        text_hint: "1 = yes, 0 = no"
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 0
+                        max_value : 1
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "Do you have problems remembering appointments?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: appointments_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        text_hint: "1 = yes, 0 = no"
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 0
+                        max_value : 1
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "Do you struggle to concentrate when others talk?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: concentratetalking_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        text_hint: "1 = yes, 0 = no"
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 0
+                        max_value : 1
+                        input_filter: 'int'
+                MDBoxLayout:
+                    cols: 2
+                    MDLabel:
+                        text: "Do you have epilepsy?"
+                        font_size: "14sp"
+                        font_name: 'Poppins-Medium.ttf'
+                        pos_hint: {"center_x": .5, "center_y": .9}
+                    NumericInput: 
+                        id: epilepsy_diagnosis
+                        text_color: 1, 0.2, 0.4, 1
+                        text_hint: "1 = yes, 0 = no"
+                        size_hint_y: .75
+                        font_name: 'Poppins-Regular.ttf'
+                        pos_hint: {"center_x": .49, "center_y": .3}
+                        background_color: 0,0,0,0
+                        cursor_color: 1, 0.2, 0.4, 1
+                        cursor_width: "2sp"
+                        font_size: "17sp"
+                        multiline: False
+                        min_value : 0
+                        max_value : 1  
+                        input_filter: 'int'
+                MDRaisedButton: 
+                    text: 'Submit'
+                    id: submit_diagnosis
+                    theme_text_color: "Custom"
+                    self.background_color = (0, 0, 0, .3)
+                    size_hint: .15, .07
+                    font_name: 'Poppins-Regular.ttf'
+                    font_style: 'Subtitle2'
+                    pos_hint: {'center_x':0.8, 'center_y':0.30}
+                    on_press: self.background_color = (1, 0.2, 0.4, 1)
+                    on_release: app.root.current = "resultssplashscreen"
