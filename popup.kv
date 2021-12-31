@@ -1,0 +1,22 @@
+#importing kv dependencies
+#:include main.kv
+
+#importing python dependencies
+
+MDScreen:
+    name: 'popup'
+    id: popup
+    MDLabel:
+        text: 'Unfortunately, our app is not looking for your profile right now.'
+        halign: 'center'
+        pos_hint: {'center_y':0.7}
+        font_size: 32
+        theme_text_color: "Custom"
+        text_color: 1, 0.2, 0.4, 1
+        font_name: 'Poppins-Regular.ttf'
+    MDLabel:
+        text: 'Thank you for your interest!'
+        halign: 'center'
+        pos_hint: {'center_y':0.6}
+        font_style: 'Subtitle1'
+        font_name: 'Poppins-Regular.ttf'
