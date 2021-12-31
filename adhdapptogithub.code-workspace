@@ -1,0 +1,10 @@
+{
+	"folders": [
+		{
+			"path": "../adhdapp"
+		}
+	],
+	"settings": {
+		"files.autoSave": "afterDelay"
+	}
+}
