@@ -1,0 +1,43 @@
+#importing kv files necessary for screen
+#: include selection.kv
+    
+#importing python files necessary for the screen
+
+
+MDScreen:
+    name: 'moreinfo'
+    id: moreinfo
+    MDLabel:
+        text: 'You want to know more about ADHD in women!'
+        halign: 'center'
+        pos_hint: {'center_y':0.75}
+        font_style: 'H6'
+        font_name: 'Poppins-Regular.ttf'
+    MDLabel:
+        text: 'Unfortunately, our app is simple and cannot sufficient information on this interface.'
+        halign: 'center'
+        pos_hint: {'center_y':0.65}
+        font_style: 'Subtitle1'
+        font_name: 'Poppins-Regular.ttf'
+    MDLabel:
+        text: 'Please click the link to our website for why we care about this issue!'
+        halign: 'center'
+        theme_text_color: "Custom"
+        text_color: 1, 0.2, 0.4, 1
+        pos_hint: {'center_y':0.35}
+        font_style: 'Subtitle2'
+        font_name: 'Poppins-Regular.ttf'
+    Label:
+        id: need_help_link
+        font_size: 20
+        markup: True
+        pos_hint: {'center_y':0.2}
+        text: 'go to our [ref=website]website[/ref]'
+        font_name: 'Poppins-Regular.ttf'
+        on_ref_press:
+            import webbrowser
+            webbrowser.open('https://theadhdapp.com') 
+    MDIconButton:
+        icon: "home"
+        on_release: app.root.current = "selection"
+        
