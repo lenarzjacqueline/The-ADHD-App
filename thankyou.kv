@@ -1,0 +1,36 @@
+#importing kv files necessary for screen
+#: include selection.kv  
+
+MDScreen:
+    name: 'thankyou'
+    id: thankyou
+    MDLabel:
+        text: 'Thank you for your help to better ADHD research for women'
+        halign: 'center'
+        pos_hint: {'center_y':0.7}
+        font_style: 'H6'
+        font_name: 'Poppins-Regular.ttf'
+    MDLabel:
+        text: 'Please click link to go to website to join our community'
+        halign: 'center'
+        pos_hint: {'center_y':0.6}
+        font_style: 'Subtitle1'
+        font_name: 'Poppins-Regular.ttf'
+    MDLabel:
+        text: ':)'
+        halign: 'center'
+        theme_text_color: "Custom"
+        text_color: 1, 0.2, 0.4, 1
+        pos_hint: {'center_y':0.5}
+        font_name: 'Poppins-Regular.ttf'
+    Label:
+        id: need_help_link
+        font_size: 20
+        markup: True
+        pos_hint: {'center_y':0.3}
+        text: 'go to our [ref=website]website[/ref]'
+        font_name: 'Poppins-Regular.ttf'
+        on_ref_press:
+            import webbrowser
+            webbrowser.open('https://theadhdapp.com') 
+
