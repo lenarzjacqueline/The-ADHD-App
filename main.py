@@ -31,8 +31,6 @@ from kivy.uix.label import Label
 from kivy.network.urlrequest import UrlRequest
 from kivy.uix.popup import Popup
 from kivy.uix.screenmanager import Screen, ScreenManager, FallOutTransition
-from kivy.uix.scrollview import ScrollView
-from kivy.uix.slider import Slider
 from kivy.uix.tabbedpanel import TabbedPanel
 from kivy.uix.textinput import TextInput
 from kivy.uix.widget import Widget
