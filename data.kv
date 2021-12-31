@@ -1,0 +1,145 @@
+#importing the dependent kv files
+#: include data_two.kv
+
+#importing necessary python files / classes
+#: import Data_Submit update_gs.Data_Submit
+
+
+
+Data:
+    name: 'data'
+    #defining our inputs so we can reference them in our python code
+    age: age
+    adhd: adhd
+    time: time	
+    lead: lead	
+    decisions: decisions		
+    MDFloatLayout:
+        MDLabel:
+            text: "Data"
+            font_size: "24sp"
+            font_name: 'Poppins-Medium.ttf'
+            pos_hint: {"center_x": .94, "center_y": .92}
+        MDLabel: 
+            text: "page 1"
+            text_color: 1, 0.2, 0.4, 1
+            theme_text_color: "Custom"
+            font_size: "16"
+            font_name: 'Poppins-Medium.ttf'
+            pos_hint: {"center_x": .96, "center_y": .85}
+        MDGridLayout:
+            cols: 2
+            size_hint: .79, .07
+            pos_hint: {"center_x": .67, "center_y": .75}
+            MDLabel:
+                text: "Age?"
+                font_size: "14sp"
+                font_name: 'Poppins-Medium.ttf'
+            NumericInput: 
+                id: age
+                hint_text: "age"
+                text_color: 1, 0.2, 0.4, 1
+                font_name: 'Poppins-Regular.ttf'
+                background_color: 0,0,0,0
+                cursor_color: 1, 0.2, 0.4, 1
+                cursor_width: "2sp"
+                font_size: "14sp"
+                multiline: False
+                min_value : 0
+                max_value : 100  
+                input_filter: 'int'
+        MDGridLayout:
+            cols: 2
+            size_hint: .79, .07
+            pos_hint: {"center_x": .62,"center_y": .64}
+            MDLabel:
+                text: "Have you been diagnosed with ADHD?"
+                font_size: "14sp"
+                font_name: 'Poppins-Medium.ttf'
+            NumericInput: 
+                id: adhd
+                hint_text: "0 = no , 1 = yes"
+                text_color: 1, 0.2, 0.4, 1
+                font_name: 'Poppins-Regular.ttf'
+                background_color: 0,0,0,0
+                cursor_color: 1, 0.2, 0.4, 1
+                cursor_width: "2sp"
+                font_size: "14sp"
+                multiline: False
+                min_value : 0
+                max_value : 1  
+                input_filter: 'int'
+        MDGridLayout:
+            cols: 2
+            size_hint: .95, .07
+            pos_hint: {"center_x": .59,"center_y": .53}
+            MDLabel:
+                text: "Do you know what time it is right now?"
+                font_size: "14sp"
+                font_name: 'Poppins-Medium.ttf'
+            NumericInput: 
+                id: time
+                hint_text: "0 = yes, 1 = not right now, 2 = I never do"
+                text_color: 1, 0.2, 0.4, 1
+                font_name: 'Poppins-Regular.ttf'
+                background_color: 0,0,0,0
+                cursor_color: 1, 0.2, 0.4, 1
+                cursor_width: "2sp"
+                font_size: "14sp"
+                multiline: False
+                min_value : 0
+                max_value : 2
+                input_filter: 'int'
+        MDGridLayout:
+            cols: 2
+            size_hint: .9, .07
+            pos_hint: {"center_x": .62,"center_y": .42}
+            MDLabel:
+                text: "Were you exposed to lead as a child?"
+                font_size: "14sp"
+                font_name: 'Poppins-Medium.ttf'
+            NumericInput: 
+                id: lead
+                hint_text: "0 = no , 1 = yes"
+                text_color: 1, 0.2, 0.4, 1
+                font_name: 'Poppins-Regular.ttf'
+                background_color: 0,0,0,0
+                cursor_color: 1, 0.2, 0.4, 1
+                cursor_width: "2sp"
+                font_size: "14sp"
+                multiline: False
+                min_value : 0
+                max_value : 1
+                input_filter: 'int'
+        MDGridLayout:
+            cols: 2
+            size_hint: .9, .07
+            pos_hint: {"center_x": .62,"center_y": .31}
+            MDLabel:
+                text: "Do you have trouble making decisions?"
+                font_size: "14sp"
+                font_name: 'Poppins-Medium.ttf'
+            NumericInput: 
+                id: decisions
+                hint_text: "1 = yes, 0 = no"
+                text_color: 1, 0.2, 0.4, 1
+                font_name: 'Poppins-Regular.ttf'
+                background_color: 0,0,0,0
+                cursor_color: 1, 0.2, 0.4, 1
+                cursor_width: "2sp"
+                font_size: "14sp"
+                multiline: False
+                min_value : 0
+                max_value : 1
+                input_filter: 'int'
+        MDRaisedButton: 
+            text: 'Next'
+            id: next_one
+            theme_text_color: "Custom"
+            background_color: 0,0,0,0
+            size_hint: .13, .055
+            font_name: 'Poppins-Regular.ttf'
+            font_style: 'Subtitle2'
+            pos_hint: {'center_x':0.47, 'center_y':0.12}
+            on_press: root.data_on_press()
+            on_release: app.root.current = "data_two"
