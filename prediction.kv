@@ -1,0 +1,49 @@
+#importing kv files necessary for screen
+
+
+
+MDScreen: 
+    name: 'prediction'
+    id: prediction
+    #: import classification result.classification
+    classification : classification
+    MDFloatLayout:
+        MDLabel:
+            text: 'After our consistently building algorithms..'
+            halign: 'center'
+            text_color: 0,0,0,0
+            pos_hint: {'center_y':0.68}
+            font_size: "45sp"
+            font_name: 'Poppins-Regular.ttf'
+        MDLabel:
+            text: '*remember that this is unofficial*'
+            halign: 'center'
+            theme_text_color: "Custom"
+            text_color: 1, 0.2, 0.4, 1
+            pos_hint: {'center_y':0.15}
+            font_name: 'Poppins-Regular.ttf'
+        MDLabel:
+            text: 'any percent below 85%, regard as unlikely'
+            halign: 'center'
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1
+            pos_hint: {'center_y':0.3}
+            font_size: "24sp"
+            font_name: 'Poppins-Regular.ttf'
+            background_color: 1,1,1,1
+        MDLabel:
+            text: classification
+            text_color: 1, 1, 1, 1
+            halign: 'center'
+            pos_hint: {'center_y':0.48}
+            font_size: "26sp"
+        Label:
+            id: doctor_suggestion
+            font_size: 20
+            markup: True
+            pos_hint: {'center_y':0.09}
+            text: 'find nearby [ref=doctor]doctor[/ref]'
+            font_name: 'Poppins-Regular.ttf'
+            on_ref_press:
+                import webbrowser
+                webbrowser.open('https://finder.psychiatry.org/?_ga=2.205583187.1975412284.1639000361-445773591.1639000361') 
