@@ -1,0 +1,35 @@
+#importing kv files necessary for screen
+#: include prediction.kv  
+
+#importing python files necessary for the screen
+
+
+MDScreen:
+    id: resultssplashscreen
+    name: 'resultssplashscreen'
+    MDFloatLayout:
+        MDLabel:
+            text: 'Thank you for participating!'
+            halign: 'center'
+            pos_hint: {'center_y':0.7}
+            font_style: 'H2'
+            font_name: 'Poppins-Medium.ttf'
+            font_size: 30
+        MDLabel:
+            text: 'your data is being processed'
+            halign: 'center'
+            theme_text_color: "Custom"
+            text_color: 1, 0.2, 0.4, 1
+            pos_hint: {'center_y':0.3}
+            font_name: 'Poppins-Regular.ttf'
+        MDRaisedButton: 
+            text: 'press to calculate results'
+            id: submitdiagnosisbtn
+            theme_text_color: "Custom"
+            background_color: 0,0,0,0
+            size_hint: .25, .09
+            font_name: 'Poppins-Regular.ttf'
+            font_style: 'Subtitle2'
+            pos_hint: {'center_x': .49 , 'center_y':0.5}
+            on_press: self.background_color = (1, 0.2, 0.4, 1)
+            on_release: app.root.current = "prediction"
