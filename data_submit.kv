@@ -1,0 +1,177 @@
+#importing the dependent kv files
+#: include thankyou.kv
+
+#importing necessary python files / classes
+#: import Data_Submit update_gs.Data_Submit
+
+Data_Submit:
+    name: 'data_submit'
+    id: data_submit
+    ed: ed
+    imposter: imposter
+    temper: temper
+    appointments: appointments
+    concentratetalking: concentratetalking
+    epilepsy: epilepsy
+    MDFloatLayout:
+        MDLabel:
+            text: "Data"
+            font_size: "24sp"
+            font_name: 'Poppins-Medium.ttf'
+            pos_hint: {"center_x": .94, "center_y": .92}
+        MDLabel: 
+            text: "page 6"
+            text_color: 1, 0.2, 0.4, 1
+            theme_text_color: "Custom"
+            font_size: "16"
+            font_name: 'Poppins-Medium.ttf'
+            pos_hint: {"center_x": .96, "center_y": .85}
+        MDGridLayout:
+            cols: 2
+            size_hint: .9, .07
+            pos_hint: {"center_x": .58, "center_y": .76}
+            MDLabel:
+                text: "Do you have / have you had an eating disorder?"
+                font_size: "14sp"
+                font_name: 'Poppins-Medium.ttf'
+                pos_hint: {"center_x": .5, "center_y": .9}
+            NumericInput: 
+                id: ed
+                text_color: 1, 0.2, 0.4, 1
+                hint_text: "1 = yes, 0 = no"
+                font_name: 'Poppins-Regular.ttf'
+                pos_hint: {"center_x": .49, "center_y": .3}
+                background_color: 0,0,0,0
+                cursor_color: 1, 0.2, 0.4, 1
+                cursor_width: "2sp"
+                font_size: "14sp"
+                multiline: False
+                min_value : 0
+                max_value : 1
+                input_filter: 'int'
+        MDGridLayout:
+            cols: 2
+            size_hint: .95, .07
+            pos_hint: {"center_x": .625,"center_y": .66}
+            MDLabel:
+                text: "Do you feel imposter syndrome?"
+                font_size: "14sp"
+                font_name: 'Poppins-Medium.ttf'
+                pos_hint: {"center_x": .5, "center_y": .9}
+            NumericInput: 
+                id: imposter
+                text_color: 1, 0.2, 0.4, 1
+                hint_text: "1 = yes, 0 = no"
+                font_name: 'Poppins-Regular.ttf'
+                pos_hint: {"center_x": .49, "center_y": .3}
+                background_color: 0,0,0,0
+                cursor_color: 1, 0.2, 0.4, 1
+                cursor_width: "2sp"
+                font_size: "14sp"
+                multiline: False
+                min_value : 0
+                max_value : 1
+                input_filter: 'int'
+        MDGridLayout:
+            cols: 2
+            size_hint: .95, .07
+            pos_hint: {"center_x": .625,"center_y": .55}
+            MDLabel:
+                text: "Do you have temper problems?"
+                font_size: "14sp"
+                font_name: 'Poppins-Medium.ttf'
+                pos_hint: {"center_x": .5, "center_y": .9}
+            NumericInput: 
+                id: temper
+                text_color: 1, 0.2, 0.4, 1
+                hint_text: "1 = yes, 0 = no"
+                font_name: 'Poppins-Regular.ttf'
+                pos_hint: {"center_x": .49, "center_y": .3}
+                background_color: 0,0,0,0
+                cursor_color: 1, 0.2, 0.4, 1
+                cursor_width: "2sp"
+                font_size: "14sp"
+                multiline: False
+                min_value : 0
+                max_value : 1
+                input_filter: 'int'
+        MDGridLayout:
+            cols: 2
+            size_hint: .98, .07
+            pos_hint: {"center_x": .59,"center_y": .45}
+            MDLabel:
+                text: "Do you have problems remembering appointments?"
+                font_size: "14sp"
+                font_name: 'Poppins-Medium.ttf'
+                pos_hint: {"center_x": .5, "center_y": .9}
+            NumericInput: 
+                id: appointments
+                text_color: 1, 0.2, 0.4, 1
+                hint_text: "1 = yes, 0 = no"
+                font_name: 'Poppins-Regular.ttf'
+                pos_hint: {"center_x": .49, "center_y": .3}
+                background_color: 0,0,0,0
+                cursor_color: 1, 0.2, 0.4, 1
+                cursor_width: "2sp"
+                font_size: "14sp"
+                multiline: False
+                min_value : 0
+                max_value : 1
+                input_filter: 'int'
+        MDGridLayout:
+            cols: 2
+            size_hint: .96, .07
+            pos_hint: {"center_x": .59,"center_y": .35}
+            MDLabel:
+                text: "Do you struggle to concentrate when others talk?"
+                font_size: "14sp"
+                font_name: 'Poppins-Medium.ttf'
+                pos_hint: {"center_x": .5, "center_y": .9}
+            NumericInput: 
+                id: concentratetalking
+                text_color: 1, 0.2, 0.4, 1
+                hint_text: "1 = yes, 0 = no"
+                font_name: 'Poppins-Regular.ttf'
+                pos_hint: {"center_x": .49, "center_y": .3}
+                background_color: 0,0,0,0
+                cursor_color: 1, 0.2, 0.4, 1
+                cursor_width: "2sp"
+                font_size: "14sp"
+                multiline: False
+                min_value : 0
+                max_value : 1
+                input_filter: 'int'
+        MDGridLayout:
+            cols: 2
+            size_hint: .83, .07
+            pos_hint: {"center_x": .62,"center_y": .25}
+            MDLabel:
+                text: "Do you have epilepsy?"
+                font_size: "14sp"
+                font_name: 'Poppins-Medium.ttf'
+                pos_hint: {"center_x": .5, "center_y": .9}
+            NumericInput: 
+                id: epilepsy
+                text_color: 1, 0.2, 0.4, 1
+                hint_text: "1 = yes, 0 = no"
+                font_name: 'Poppins-Regular.ttf'
+                pos_hint: {"center_x": .49, "center_y": .3}
+                background_color: 0,0,0,0
+                cursor_color: 1, 0.2, 0.4, 1
+                cursor_width: "2sp"
+                font_size: "14sp"
+                multiline: False
+                min_value : 0
+                max_value : 1  
+                input_filter: 'int'
+        MDRaisedButton: 
+            text: 'submit'
+            id: submitbtn
+            theme_text_color: "Custom"
+            background_color: 0,0,0,0
+            size_hint: .13, .055
+            font_name: 'Poppins-Regular.ttf'
+            font_style: 'Subtitle2'
+            pos_hint: {'center_x':0.47, 'center_y':0.12}
+            on_press: root.data_submit_on_press()
+            on_release: app.root.current = "thankyou"
