@@ -70,7 +70,6 @@ def model_baseline():
   dense2 = Dense(16, activation=tf.nn.relu)(dense1)
   outputs = Dense(1, activation=tf.nn.sigmoid)(dense2)
   model_baseline = Model(inputs=inputs, outputs=outputs)
-
   model_baseline.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
   return model_baseline
 
@@ -78,9 +77,8 @@ def model_baseline():
 def model_smaller():
   inputs = Input(shape=(30,))
   x = Dense(4, activation=tf.nn.relu)(inputs)
-  outputs = Dense(1, activation=tf.nn.softmax)(x)
+  outputs = Dense(1, activation=tf.nn.sigmoid)(x)
   model_smaller = Model(inputs=inputs, outputs=outputs)
-
   model_smaller.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
   return model_smaller
       
@@ -88,14 +86,6 @@ def model_smaller():
 def SVM_Model(X_train, Y_train, X_test):
   clf = svm.SVC(gamma=0.001, C=100.)
   clf.fit(X_train, Y_train)
-  #configuration options
-  blobs_random_seed = 42
-  centers = [(0,0), (5,5)]
-  cluster_std = 1
-  frac_test_split = 0.33
-  num_features_for_samples = 2
-  num_samples_total = 100 
-  inputs, targets = make_blobs(n_samples = num_samples_total, centers = centers, n_features = num_features_for_samples, cluster_std = cluster_std)
   predictions = clf.predict(X_test)
   return predictions
         
@@ -125,12 +115,31 @@ class MLAlgo():
       #split to train and test data
       X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.33, random_state=1)
 
-      kfold = StratifiedKFold(n_splits=10, shuffle=True)
+      kfold = StratifiedKFold(n_splits=3, shuffle=True)
 
       # evaluate baseline model with standardized dataset
       estimators_standard = [
         ('standardize', StandardScaler()),
-        ('mlp', KerasClassifier(build_fn=model_baseline, epochs=100, batch_size=33, verbose=1))
+        ('mlp', KerasClassifier(
+          build_fn=model_baseline, 
+          epochs=250, 
+          batch_size=33,
+          validation_split=0.33,
+          validation_freq=10,
+          verbose=1,
+          callbacks=[
+            keras.callbacks.TensorBoard(log_dir='/Users/jacquelenarz/Desktop/school/logs/model_baseline'),
+            tf.keras.callbacks.EarlyStopping(
+              monitor="val_acc",
+              min_delta=0.02,
+              patience=40,
+              mode="max",
+              restore_best_weights=True,
+            ) 
+          ],
+          use_multiprocessing=True,
+          workers=4
+          ))
       ]
       
       pipeline_standard = Pipeline(estimators_standard)
@@ -142,7 +151,26 @@ class MLAlgo():
       # evaluate smaller model
       estimators_smaller = [
         ('standardize', StandardScaler()),
-        ('mlp', KerasClassifier(build_fn=model_smaller, epochs=100, batch_size=33, verbose=1))
+        ('mlp', KerasClassifier(
+          build_fn=model_smaller,
+          epochs=250,
+          batch_size=33,
+          validation_split=0.33,
+          validation_freq=10,
+          verbose=1, 
+          callbacks=[
+            keras.callbacks.TensorBoard(log_dir='/Users/jacquelenarz/Desktop/school/logs/model_smaller'),
+            tf.keras.callbacks.EarlyStopping(
+              monitor="val_acc",
+              min_delta=0.02,
+              patience=40,
+              mode="max",
+              restore_best_weights=True,
+            ) 
+          ],
+          use_multiprocessing=True,
+          workers=4
+          ))
       ]
       pipeline_smaller = Pipeline(estimators_smaller)
       pipeline_smaller.fit(X_train, Y_train)
